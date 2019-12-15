@@ -11,8 +11,16 @@ module.exports = app => {
 
   router.get("/", async (req, res) => {
     const queryOptions = {};
-    if (req.Model.modelName == "Category") {
-      queryOptions.populate = "parent";
+    const modelName = req.Model.modelName;
+    switch(modelName){
+      case "Category":
+        queryOptions.populate = "parent";
+        break;
+      case "Hero":
+        queryOptions.populate = "categories";
+      default:
+        queryOptions.populate = "parent";
+        break;
     }
 
     const items = await req.Model.find()

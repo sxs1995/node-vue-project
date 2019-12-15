@@ -55,9 +55,8 @@ export default {
         message: "保存成功"
       });
     },
-    handleAvatarSuccess(){
-      console.log(1111111)
-      // this.model.icon = URL.createObjectURL(file.raw);
+    handleAvatarSuccess(res){
+      this.$set(this.model,'icon',res.url);
     }
   }
 };
